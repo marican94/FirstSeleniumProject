@@ -9,6 +9,37 @@ import java.util.List;
 public class SeleniumDemo {
     public static void main(String[] args){
         WebDriver driver = new ChromeDriver();
+        findExceptionPageElements(driver);
+        driver.quit();
+    }
+
+    private static void findExceptionPageElements(WebDriver driver){
+        driver.get("https://practicetestautomation.com/practice-test-exceptions/");
+
+        WebElement linkTextLocator = driver.findElement(By.linkText("Selenium WebDriver with Java for beginners program"));
+        WebElement partialLinkTextLocator = driver.findElement(By.partialLinkText("beginners program"));
+
+        WebElement inputFieldTagName = driver.findElement(By.tagName("input"));
+        WebElement inputFieldClassName = driver.findElement(By.className("input-field"));
+        WebElement inputFieldXpath = driver.findElement(By.xpath("//input[@class='input-field']"));
+        WebElement inputFieldCssSelector = driver.findElement(By.cssSelector("#row1 > input"));
+
+        List<WebElement> buttons = driver.findElements(By.tagName("button"));
+
+        WebElement editButtonId = driver.findElement(By.id("edit_btn"));
+        WebElement editButtonName = driver.findElement(By.name("Edit"));
+        WebElement editButtonCss = driver.findElement(By.cssSelector("#edit_btn"));
+        WebElement editButtonXpath = driver.findElement(By.xpath("//button[@id='edit_btn']"));
+
+        WebElement addButtonId = driver.findElement(By.id("add_btn"));
+        WebElement addButtonName = driver.findElement(By.name("Add"));
+        WebElement addButtonCss = driver.findElement(By.cssSelector("#add_btn"));
+        WebElement addButtonXpath = driver.findElement(By.xpath("//button[@id='add_btn']"));
+
+    }
+
+    private static void findLoginPageElements(WebDriver driver){
+
         driver.get("https://practicetestautomation.com/practice-test-login/");
         // WebElement Locators will be added here
         WebElement usernameInputField = driver.findElement(By.id("username"));
@@ -33,8 +64,6 @@ public class SeleniumDemo {
         WebElement privacyPolicyLink = driver.findElement(RelativeLocator.with(By.tagName("a")).toRightOf(By.partialLinkText("Test Automation")));
 
         WebElement homeButton = driver.findElement(By.className("menu-item-home"));
-
-        driver.quit();
     }
 
     private static String chromeTest(String url){
